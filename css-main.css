@@ -4,6 +4,7 @@ body {
   font-family: Arial, sans-serif;
   color: #222;
   line-height: 1.5;
+  overflow-x: hidden;
 }
 
 .container {
@@ -50,18 +51,35 @@ body {
 }
 
 .nav a {
-  margin-left: 20px;
+  margin-left: 0;
   text-decoration: none;
   color: black;
   font-weight: bold;
-  white-space: nowrap; /* prevents the menu items from breaking weirdly */
+  white-space: nowrap;
+  font-size: 14px;
 }
 
-.nav a {
-  margin-left: 20px;
-  text-decoration: none;
-  color: black;
-  font-weight: bold;
+.nav {
+  display: flex;
+  gap: 30px;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  background: none;
+  border: none;
+  gap: 6px;
+  padding: 0;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: black;
+  border-radius: 2px;
+  transition: 0.3s ease;
 }
 
 /* Hero Section */
@@ -111,6 +129,27 @@ body {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+@media (max-width: 1024px) {
+  .hero h2 {
+    font-size: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero h2 {
+    font-size: 36px;
+    margin-bottom: 8px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .hero {
+    padding: 60px 20px 80px;
+  }
+}
+
 .btn {
   background: #e69b00;
   color: black;
@@ -146,13 +185,20 @@ body {
 /* Features */
 .features {
   text-align: center;
-  padding: 20px 0;
+  padding: 40px 20px;
 }
 
 .features h3 {
-  font-size: 40px;  /* Adjust to your desired size, e.g., 24px, 48px, etc. */
-  font-weight: bold;  /* Optional: Make it bold */
-  color: maroon;      /* Optional: Match your theme */
+  font-size: 40px;
+  font-weight: bold;
+  color: maroon;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+  .features h3 {
+    font-size: 28px;
+  }
 }
 
 .feature-grid {
@@ -166,6 +212,19 @@ body {
   padding: 20px;
   border-radius: 6px;
   width: 30%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 768px) {
+  .feature {
+    width: 100%;
+    margin-bottom: 15px;
+  }
 }
 
 .video-section {
@@ -177,11 +236,12 @@ body {
   font-size: 50px;
   color: maroon;
   text-align: left;
+  margin-bottom: 30px;
 }
 
 .video-wrapper {
   display: flex;
-  gap: 10px;
+  gap: 30px;
   align-items: flex-start;
   justify-content: space-between;
 }
@@ -189,23 +249,47 @@ body {
 .video-text {
   flex: 3;
   text-align: left;
-  font-size: 30px;
+  font-size: 18px;
   color: #555;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .video-container {
   flex: 1;
   display: flex;
+  flex-direction: column;
   gap: 20px;
-  justify-content: flex-end;
-  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .video-section video {
-  flex: 1;
+  width: 100%;
   max-width: 560px;
-  height: 500px;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+
+@media (max-width: 768px) {
+  .video-section h4 {
+    font-size: 28px;
+  }
+
+  .video-wrapper {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .video-text {
+    font-size: 16px;
+  }
+
+  .video-container {
+    width: 100%;
+  }
+
+  .video-section video {
+    max-width: 100%;
+  }
 }
 
 /* How It Works */
@@ -226,6 +310,17 @@ body {
   width: 25%;
 }
 
+@media (max-width: 768px) {
+  .how-it-works h3 {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+
+  .steps {
+    gap: 20px;
+  }
+}
+
 .step-number {
   font-size: 36px;
   font-weight: bold;
@@ -234,8 +329,14 @@ body {
 
 /* Contact */
 .contact {
-  padding: 60px 0;
+  padding: 60px 20px;
   text-align: center;
+}
+
+.contact h3 {
+  font-size: 40px;
+  color: maroon;
+  margin-bottom: 30px;
 }
 
 .quote-form {
@@ -243,14 +344,33 @@ body {
   margin: auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 }
 
 .quote-form input,
+.quote-form select,
 .quote-form textarea {
-  padding: 10px;
+  padding: 12px 15px;
   border-radius: 4px;
   border: 1px solid #ccc;
+  font-size: 16px;
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.quote-form input:focus,
+.quote-form select:focus,
+.quote-form textarea:focus {
+  outline: none;
+  border-color: #e69b00;
+  box-shadow: 0 0 5px rgba(230, 155, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  .contact h3 {
+    font-size: 28px;
+  }
 }
 
 /* Footer */
@@ -311,17 +431,55 @@ body {
     width: 100%;
   }
 
+  .hamburger {
+    display: flex;
+  }
+
+  .header .container {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
   .nav {
-    float: none;
-    text-align: center;
-    margin-top: 10px;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    padding: 20px;
+    gap: 15px;
+    display: none;
+    width: 100%;
+    border-bottom: 1px solid #eee;
+  }
+
+  .nav.active {
+    display: flex;
+  }
+
+  .nav a {
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .logo-text {
+    font-size: 18px;
+  }
+
+  .logo-img {
+    height: 35px;
+  }
+
+  .logo-group {
+    gap: 8px;
   }
 }
 
 /* Service Area Section with Background Map */
 .service-area {
   position: relative;
-  padding: 100px 0;
+  padding: 60px 20px;
   background:
     linear-gradient(
       rgba(255,255,255,0.80),
@@ -330,8 +488,23 @@ body {
     url('images/service-area.png') center/contain no-repeat;
 
   text-align: left;
-  color: black; /* make all text in the service-area dark (overrides inherited white) */
+  color: black;
   font-size: 25px;
+}
+
+@media (max-width: 768px) {
+  .service-area {
+    padding: 40px 20px;
+    font-size: 16px;
+  }
+
+  .service-area h3 {
+    font-size: 28px;
+  }
+
+  .service-area ul li {
+    font-size: 14px;
+  }
 }
 
 
@@ -381,13 +554,20 @@ body {
 }
 
 .about-content h3 {
-  font-size: 44px;       /* big headline size — adjust to taste */
+  font-size: 44px;
   margin: 0 0 12px;
   color: maroon;
   align-items: left;
   justify-content: left;
   display: flex;
   gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .about-content h3 {
+    font-size: 28px;
+    flex-direction: column;
+  }
 }
 
 .about-content p {
@@ -428,6 +608,17 @@ body {
   font-size: 35px;
 }
 
+@media (max-width: 768px) {
+  .map-section {
+    padding: 30px 0;
+  }
+
+  .map-section h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+}
+
 .map-wrapper {
   position: relative;
   width: 100%;
@@ -448,15 +639,15 @@ body {
   border: 0;
 }
 
-/* Video section responsive */
-@media (max-width: 768px) {
-  .video-wrapper {
-    flex-direction: column;
-  }
-  .video-text {
-    text-align: center;
-  }
-  .video-container {
-    justify-content: center;
-  }
+/* Hamburger menu animation */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(10px, 10px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
 }

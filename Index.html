@@ -15,7 +15,12 @@
   <img src="Images/TCC-logo.jpg" alt="Texas Container Connection Logo" class="logo-img">
   <h1 class="logo-text">TEXAS CONTAINER CONNECTION</h1>
 </div>
-      <nav class="nav">
+      <button class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="nav" id="nav">
         <a href="#hero">Home</a>
         <a href="#products">Products</a>
         <a href="#how-it-works">How It Works</a>
@@ -103,7 +108,7 @@
         </div>
         <div class="video-container">
           <video width="560" height="315" controls>
-            <source src="Images/VID_20251217_204932.mp4" type="video/mp4">
+            <source src="Images/lv_0_20260125124018.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
           <video width="560" height="315" controls>
@@ -295,6 +300,24 @@
     <p>© 2025 TEXAS CONTAINER CONNECTION – All Rights Reserved</p>
   </footer>
 
-  
+  <script>
+    // Hamburger menu functionality
+    const hamburger = document.getElementById('hamburger');
+    const nav = document.getElementById('nav');
+    
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      nav.classList.toggle('active');
+    });
+
+    // Close menu when a link is clicked
+    const navLinks = nav.querySelectorAll('a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        nav.classList.remove('active');
+      });
+    });
+  </script>
 </body>
 </html>
